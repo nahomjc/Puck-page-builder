@@ -1,23 +1,25 @@
 import type { Config } from "@measured/puck";
-
+import { DropZone } from "@measured/puck";
 type Props = {
   HeadingBlock: { title: string };
 };
 
 export const config: Config<Props> = {
   components: {
+    Example: {
+      render: () => {
+        return (
+          <div
+            style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}
+          >
+            <DropZone zone="left-column" />
+            <DropZone zone="right-column" />
+          </div>
+        );
+      },
+    },
     HeadingBlock: {
-      fields: {
-        title: { type: "text" },
-      },
-      defaultProps: {
-        title: "Heading",
-      },
-      render: ({ title }) => (
-        <div style={{ padding: 64 }}>
-          <h1>{title}</h1>
-        </div>
-      ),
+      render: ({ text }) => <p>{text}</p>,
     },
   },
 };
